@@ -205,3 +205,36 @@ h2 {
     margin-bottom: 20px;
     transition: color 0.3s;
 }
+
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+        padding-top: 50px;
+    }
+
+    .container {
+        padding: 20px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .lotto-numbers {
+        flex-wrap: wrap;
+    }
+
+    .lotto-numbers span {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        margin: 5px;
+    }
+
+    #generate-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}

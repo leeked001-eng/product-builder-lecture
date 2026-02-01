@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lottoNumbersContainer = document.querySelector('.lotto-numbers');
 
     const generateAndDisplayNumbers = () => {
+        console.log("generateAndDisplayNumbers called");
         // Clear previous numbers and reset animation
         lottoNumbersContainer.innerHTML = '';
 
@@ -33,10 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
         while (numbers.size < 6) {
             numbers.add(Math.floor(Math.random() * 45) + 1);
         }
+        console.log("Generated numbers:", numbers);
 
         const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
+        console.log("Sorted numbers:", sortedNumbers);
 
         sortedNumbers.forEach((number, index) => {
+            console.log(`Creating span for number ${number}`);
             const span = document.createElement('span');
             span.textContent = number;
             // Apply a staggered delay to the animation
