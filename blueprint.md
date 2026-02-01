@@ -11,6 +11,7 @@ A simple, visually appealing web application to generate random lotto numbers.
     *   Generates 6 unique random numbers between 1 and 45.
     *   Displays the generated numbers in a clear and visually appealing way.
     *   Numbers are automatically generated on page load.
+    *   **Disqus Comments:** Integrated Disqus comment section at the bottom of the page for user interaction and feedback.
 *   **Styling:**
     *   Uses a modern color palette.
     *   Responsive design for different screen sizes.
