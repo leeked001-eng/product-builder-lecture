@@ -9,7 +9,9 @@
     pkgs.python3
   ];
   # Sets environment variables in the workspace
-  env = {};
+  env = {
+    GOOGLE_CLOUD_PROJECT = "gemini-dev-486108";
+  };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
