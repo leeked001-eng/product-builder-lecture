@@ -4,12 +4,16 @@
     --text-color-light: #333;
     --button-background-light: #007bff;
     --button-hover-light: #0056b3;
+    --input-background-light: #f8f8f8;
+    --input-border-light: #ccc;
 
     --background-color-dark: #1a1a1a;
     --container-background-dark: #2c2c2c;
     --text-color-dark: #f0f2f5;
     --button-background-dark: #0056b3;
     --button-hover-dark: #007bff;
+    --input-background-dark: #3a3a3a;
+    --input-border-dark: #555;
 }
 
 body {
@@ -30,6 +34,8 @@ body[data-theme="dark"] {
     --text-color-light: var(--text-color-dark);
     --button-background-light: var(--button-background-dark);
     --button-hover-light: var(--button-hover-dark);
+    --input-background-light: var(--input-background-dark);
+    --input-border-light: var(--input-border-dark);
 }
 
 .theme-switch-wrapper {
@@ -146,4 +152,56 @@ h1 {
 
 #generate-btn:hover {
     background-color: var(--button-hover-light);
+}
+
+/* Contact Form Styles */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.contact-form label {
+    font-weight: bold;
+    color: var(--text-color-light);
+}
+
+.contact-form input[type="email"],
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid var(--input-border-light);
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: var(--input-background-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: var(--button-background-light);
+    outline: none;
+}
+
+.contact-form button[type="submit"] {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #28a745; /* A distinct color for submit */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-form button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+h2 {
+    color: var(--text-color-light);
+    margin-bottom: 20px;
+    transition: color 0.3s;
 }
