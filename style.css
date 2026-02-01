@@ -23,7 +23,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -209,12 +209,12 @@ h2 {
 @media (max-width: 768px) {
     body {
         align-items: flex-start;
-        padding-top: 50px;
     }
 
     .container {
         padding: 20px;
         width: 90%;
+        margin-top: 50px;
     }
 
     h1 {
