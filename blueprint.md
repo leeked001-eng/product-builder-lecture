@@ -1,23 +1,38 @@
-# Lotto Number Generator
+# Product Canvas Builder
 
-## Overview
+## Project Overview
 
-A simple, visually appealing web application to generate random lotto numbers.
+This is a web application that determines whether a person's face more closely resembles a dog or a cat, using a machine learning model. It provides a fun, interactive experience for users by analyzing their facial features in real-time through their webcam.
 
-## Design and Features
+## Style, Design, and Features
 
-*   **UI:** A clean, modern interface with a prominent "Generate" button.
-*   **Functionality:**
-    *   Generates 6 unique random numbers between 1 and 45.
-    *   Displays the generated numbers in a clear and visually appealing way.
-    *   Numbers are automatically generated on page load.
-    *   **Disqus Comments:** Integrated Disqus comment section at the bottom of the page for user interaction and feedback.
-*   **Styling:**
-    *   Uses a modern color palette.
-    *   Responsive design for different screen sizes.
-    *   Includes a "pop-in" animation for the numbers as they appear.
+### Visual Design
+*   **Aesthetics:** A clean, modern, and visually engaging interface.
+*   **Layout:** A mobile-first responsive design that works on all screen sizes. The layout will be centered and simple.
+*   **Color Palette:** A playful and inviting color scheme.
+*   **Typography:** Clear and readable fonts.
 
-## Current Task: Add Animation
+### UI Components & Interactivity
+*   **Webcam View:** A live feed from the user's webcam.
+*   **Start Button:** To initiate the analysis.
+*   **Results Display:** A dynamic bar chart will show the probability of being "dog-like" or "cat-like" in real-time.
 
-1.  **`style.css`:** Add a `@keyframes` animation to make the numbers pop in.
-2.  **`main.js`:** Stagger the appearance of each number with a slight delay to make the animation more dynamic.
+### Features
+*   **Real-time Face Analysis:** Uses the Teachable Machine model to classify the user's face.
+*   **Instant Feedback:** The results are updated continuously.
+
+## Current Task: Initial Setup and Implementation
+
+1.  **Create `blueprint.md`:** Document the project overview, design, and implementation plan.
+2.  **Structure `index.html`:**
+    *   Add a title, header, and description.
+    *   Create a container for the webcam feed and the results.
+    *   Include necessary script tags for the Teachable Machine library and `main.js`.
+3.  **Style with `style.css`:**
+    *   Apply the modern design principles outlined above.
+    *   Ensure the layout is responsive and visually appealing.
+4.  **Implement Logic in `main.js`:**
+    *   Write the JavaScript code to access the webcam.
+    *   Load the Teachable Machine model.
+    *   Run predictions on the webcam stream.
+    *   Update the result bars based on the prediction outcomes.

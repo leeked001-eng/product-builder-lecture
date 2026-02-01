@@ -1,240 +1,125 @@
 :root {
-    --background-color-light: #f0f2f5;
-    --container-background-light: #fff;
-    --text-color-light: #333;
-    --button-background-light: #007bff;
-    --button-hover-light: #0056b3;
-    --input-background-light: #f8f8f8;
-    --input-border-light: #ccc;
-
-    --background-color-dark: #1a1a1a;
-    --container-background-dark: #2c2c2c;
-    --text-color-dark: #f0f2f5;
-    --button-background-dark: #0056b3;
-    --button-hover-dark: #007bff;
-    --input-background-dark: #3a3a3a;
-    --input-border-dark: #555;
+    --primary-color: #3b82f6;
+    --background-color: #f0f4f8;
+    --container-bg: #ffffff;
+    --text-color: #1e293b;
+    --subtitle-color: #475569;
+    --footer-color: #94a3b8;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--background-color-light);
-    color: var(--text-color-light);
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-body[data-theme="dark"] {
-    --background-color-light: var(--background-color-dark);
-    --container-background-light: var(--container-background-dark);
-    --text-color-light: var(--text-color-dark);
-    --button-background-light: var(--button-background-dark);
-    --button-hover-light: var(--button-hover-dark);
-    --input-background-light: var(--input-background-dark);
-    --input-border-light: var(--input-border-dark);
-}
-
-.theme-switch-wrapper {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-}
-
-.theme-switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.theme-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #2196F3;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .container {
     text-align: center;
-    background-color: var(--container-background-light);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
+    background-color: var(--container-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow);
+    max-width: 500px;
+    width: 100%;
 }
 
-h1 {
-    margin-bottom: 30px;
-    color: var(--text-color-light);
-    transition: color 0.3s;
+header h1 {
+    font-size: 2.25rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
 }
 
-.lotto-numbers {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    perspective: 1000px; /* For 3D effect if needed */
+header p {
+    font-size: 1.125rem;
+    color: var(--subtitle-color);
+    margin-top: 0;
+    margin-bottom: 2rem;
 }
 
-.lotto-numbers span {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    margin: 0 10px;
-    border-radius: 50%;
-    background-color: #4CAF50;
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    transform: scale(0);
-    animation: pop-in 0.5s forwards;
+#webcam-container {
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* 4:3 Aspect Ratio */
+    background: #e2e8f0;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
 }
 
-@keyframes pop-in {
-    from {
-        transform: scale(0) rotateY(90deg);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1) rotateY(0deg);
-        opacity: 1;
-    }
+#webcam-container canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-#generate-btn {
-    padding: 15px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--button-background-light);
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#generate-btn:hover {
-    background-color: var(--button-hover-light);
-}
-
-/* Contact Form Styles */
-.contact-form {
+#label-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 30px;
-    text-align: left;
+    gap: 1.5rem;
 }
 
-.contact-form label {
+.result-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.result-label {
+    flex-basis: 80px;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: var(--text-color-light);
+    color: var(--text-color);
 }
 
-.contact-form input[type="email"],
-.contact-form textarea {
-    padding: 10px;
-    border: 1px solid var(--input-border-light);
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: var(--input-background-light);
-    color: var(--text-color-light);
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+.result-bar-container {
+    flex-grow: 1;
+    height: 30px;
+    background-color: #e2e8f0;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
-.contact-form input[type="email"]:focus,
-.contact-form textarea:focus {
-    border-color: var(--button-background-light);
-    outline: none;
+.result-bar {
+    height: 100%;
+    width: 0;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    transition: width 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    box-sizing: border-box;
+    color: white;
+    font-weight: bold;
 }
 
-.contact-form button[type="submit"] {
-    padding: 12px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    background-color: #28a745; /* A distinct color for submit */
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
+footer {
+    margin-top: 2.5rem;
+    color: var(--footer-color);
+    font-size: 0.875rem;
 }
 
-.contact-form button[type="submit"]:hover {
-    background-color: #218838;
-}
-
-h2 {
-    color: var(--text-color-light);
-    margin-bottom: 20px;
-    transition: color 0.3s;
-}
-
-@media (max-width: 768px) {
-    body {
-        align-items: flex-start;
-    }
-
+@media (max-width: 600px) {
     .container {
-        padding: 20px;
-        width: 90%;
-        margin-top: 50px;
+        padding: 1.5rem 1rem;
     }
 
-    h1 {
-        font-size: 24px;
+    header h1 {
+        font-size: 1.8rem;
     }
 
-    .lotto-numbers {
-        flex-wrap: wrap;
-    }
-
-    .lotto-numbers span {
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        font-size: 18px;
-        margin: 5px;
-    }
-
-    #generate-btn {
-        padding: 12px 25px;
-        font-size: 16px;
+    header p {
+        font-size: 1rem;
     }
 }
