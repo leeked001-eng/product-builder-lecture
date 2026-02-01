@@ -41,7 +41,7 @@ header p {
     font-size: 1.125rem;
     color: var(--subtitle-color);
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 #webcam-container {
@@ -110,9 +110,70 @@ footer {
     font-size: 0.875rem;
 }
 
+#toggle-camera-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 999px; /* pill shape */
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+#toggle-camera-btn:hover {
+    background-color: #2563eb;
+}
+
+#toggle-camera-btn:active {
+    transform: scale(0.95);
+}
+
+#toggle-camera-btn:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+}
+
+.webcam-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--subtitle-color);
+    font-size: 1.1rem;
+}
+
+.comments {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+.comments h2 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+#disqus_thread {
+    border-radius: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+}
+
 @media (max-width: 600px) {
+    body {
+        padding: 0;
+    }
     .container {
         padding: 1.5rem 1rem;
+        border-radius: 0;
+        min-height: 100vh;
     }
 
     header h1 {

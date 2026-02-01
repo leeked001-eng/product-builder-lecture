@@ -1,10 +1,10 @@
-// Teachable Machine model URL
 const URL = "https://teachablemachine.withgoogle.com/models/LLx3kzFVp/";
 
 let model, webcam, labelContainer, maxPredictions;
+let isWebcamActive = false;
+let animationFrameId;
 
-// Load the image model and setup the webcam
-async function init() {
+async function setup() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
 
@@ -12,18 +12,8 @@ async function init() {
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
 
-    // Setup webcam
-    const flip = true; // Flips the webcam feed
-    webcam = new tmImage.Webcam(400, 400, flip); // width, height, flip
-    await webcam.setup(); // Request access to the webcam
-    await webcam.play();
-    window.requestAnimationFrame(loop);
-
-    // Append elements to the DOM
-    document.getElementById("webcam-container").appendChild(webcam.canvas);
-    labelContainer = document.getElementById("label-container");
-    
     // Create result bars for each class
+    labelContainer = document.getElementById("label-container");
     for (let i = 0; i < maxPredictions; i++) {
         const className = model.getClassLabels()[i];
         const resultItem = document.createElement("div");
@@ -31,7 +21,8 @@ async function init() {
 
         const label = document.createElement("div");
         label.classList.add("result-label");
-        label.innerHTML = className === 'Dog' ? '강아지상' : '고양이상';
+        // BUG FIX: Use the correct class name from the model
+        label.innerHTML = className === '강아지' ? '강아지상' : '고양이상';
 
         const barContainer = document.createElement("div");
         barContainer.classList.add("result-bar-container");
@@ -45,25 +36,67 @@ async function init() {
         resultItem.appendChild(barContainer);
         labelContainer.appendChild(resultItem);
     }
+    
+    document.getElementById('toggle-camera-btn').addEventListener('click', toggleWebcam);
+    
+    // Set initial state
+    stopWebcam();
+}
+
+async function startWebcam() {
+    const flip = true;
+    webcam = new tmImage.Webcam(400, 400, flip);
+    await webcam.setup();
+    await webcam.play();
+    isWebcamActive = true;
+    const webcamContainer = document.getElementById("webcam-container");
+    webcamContainer.innerHTML = ''; // Clear placeholder
+    webcamContainer.appendChild(webcam.canvas);
+    document.getElementById('toggle-camera-btn').textContent = '카메라 끄기';
+    animationFrameId = window.requestAnimationFrame(loop);
+}
+
+function stopWebcam() {
+    if (webcam && webcam.stream) {
+        webcam.stop();
+    }
+    isWebcamActive = false;
+    if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+    }
+    const webcamContainer = document.getElementById("webcam-container");
+    webcamContainer.innerHTML = '<div class="webcam-placeholder">카메라가 꺼져 있습니다</div>';
+    document.getElementById('toggle-camera-btn').textContent = '카메라 켜기';
+}
+
+async function toggleWebcam() {
+    const btn = document.getElementById('toggle-camera-btn');
+    btn.disabled = true;
+    if (isWebcamActive) {
+        stopWebcam();
+    } else {
+        await startWebcam();
+    }
+    btn.disabled = false;
 }
 
 async function loop() {
-    webcam.update(); // update the webcam frame
+    if (!isWebcamActive) return;
+    webcam.update();
     await predict();
-    window.requestAnimationFrame(loop);
+    animationFrameId = window.requestAnimationFrame(loop);
 }
 
-// run the webcam image through the image model
 async function predict() {
-    // predict can take in an image, video or canvas html element
     const prediction = await model.predict(webcam.canvas);
     for (let i = 0; i < maxPredictions; i++) {
-        const classPrediction = (prediction[i].probability * 100).toFixed(1) + "%";
+        const percent = prediction[i].probability * 100;
+        const classPrediction = percent.toFixed(1) + "%";
         const resultBar = document.getElementById(`result-bar-${i}`);
         resultBar.style.width = classPrediction;
         resultBar.innerHTML = classPrediction;
     }
 }
 
-// Initialize the application
-init();
+// Initial setup
+setup();
